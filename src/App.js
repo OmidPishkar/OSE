@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React , { useState } from 'react'
 
-function App() {
+import Header from './layout/Header'
+import Main from './layout/Main'
+import Footer from './layout/Footer'
+
+import InputContext from './context/input-context'
+
+const App = () => {
+  const [inputValue , setInputValue] = useState(null)
+  const handleForm = value => setInputValue(value)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container mx-auto'>
+      <InputContext.Provider value={inputValue}>
+        <Header userSearch={handleForm}/>
+        <Main/>
+        <Footer/>
+      </InputContext.Provider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
